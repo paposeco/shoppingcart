@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import dreamy from "./images/dreamy.png";
+import wooly from "./images/wooly.png";
+import purlite from "./images/purlite.png";
+import varie from "./images/varie.png";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+    <div className="main">
+      <div id="slogan">
+        <h2>Welcome to coziest website full of yarn.</h2>
+      </div>
+      <div id="supplierssection">
+        <h2>Suppliers</h2>
+        <div id="suppliers">
+          <img src={dreamy} alt="dreamyyarn" />
+          <img src={wooly} alt="wooly" />
+          <img src={purlite} alt="purlite" />
+          <img src={varie} alt="variegations" />
+        </div>
+      </div>
+      <div>
+        <h2>Hot right now</h2>
+        <div>
+          <p>Show three items with links for purchase.</p>
+        </div>
+      </div>
+      <footer>
+        <a href="https:github.com/paposeco/" alt="github">
+          <span>
+            <i className="lab la-github"></i>
+          </span>
+          Fabi
         </a>
-      </header>
+      </footer>
     </div>
   );
-}
+};
 
 export default App;
