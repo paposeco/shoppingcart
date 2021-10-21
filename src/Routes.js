@@ -28,7 +28,7 @@ const Routes = () => {
         </nav>
         <div id="shoppingcartdiv">
           <Link to="/shoppingcart">
-            <i className="las la-shopping-cart"></i>
+            <Cart />
           </Link>
         </div>
       </div>

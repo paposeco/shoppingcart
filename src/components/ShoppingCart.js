@@ -1,7 +1,10 @@
+import React, { useState } from "react";
+
 const Cart = () => {
+  const [itemsInCart, setItemsInCart] = useState(0);
   return (
     <div>
-      <h2>Shopping Cart</h2>
+      <i className="las la-shopping-cart"></i> {itemsInCart} items
     </div>
   );
 };
