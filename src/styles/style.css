@@ -82,3 +82,10 @@ nav {
   align-items: center;
   justify-content: space-between;
 }
+
+#shopheader {
+  display: flex;
+  width: 1000px;
+  flex-direction: row;
+  justify-content: space-between;
+}

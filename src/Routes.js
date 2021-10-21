@@ -2,7 +2,7 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import App from "./App";
 import Shop from "./components/Shop.js";
 import Contact from "./components/Contact.js";
-import Cart from "./components/ShoppingCart.js";
+import DisplayCart from "./components/DisplayCart.js";
 
 const Routes = () => {
   return (
@@ -26,17 +26,13 @@ const Routes = () => {
             </li>
           </ul>
         </nav>
-        <div id="shoppingcartdiv">
-          <Link to="/shoppingcart">
-            <Cart />
-          </Link>
-        </div>
       </div>
 
       <Switch>
         <Route exact path="/" component={App} />
         <Route exact path="/shop" component={Shop} />
         <Route exact path="/contact" component={Contact} />
+        <Route exact path="/shoppingcart" component={DisplayCart} />
       </Switch>
     </BrowserRouter>
   );
