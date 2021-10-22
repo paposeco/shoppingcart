@@ -1,6 +1,6 @@
 import Stock from "./Stock.js";
 import Cart from "./ShoppingCart.js";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DisplayCart from "./DisplayCart.js";
 import { Link } from "react-router-dom";
 
@@ -8,8 +8,8 @@ const Shop = () => {
   const [itemsSelected, setItemsSelected] = useState([]);
   const [updateCart, setUpdateCart] = useState(false);
   const sendtocart = function (props) {
-    setItemsSelected(itemsSelected.concat(props));
     console.log(props);
+    setItemsSelected(itemsSelected.concat(props));
     setUpdateCart(true);
   };
 
@@ -47,3 +47,5 @@ const Shop = () => {
 };
 
 export default Shop;
+
+//quando clicam aqui deve ver se ha cookies e fazer update as cenas com o resultado

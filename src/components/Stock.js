@@ -152,7 +152,8 @@ class Stock extends React.Component {
         itemsInCart: this.state.itemsInCart.concat(this.state.selectedItem),
       },
       () => {
-        const cookienumber = this.state.itemsInCart.length;
+        const allcookies = document.cookie.split(";");
+        const cookienumber = Number(allcookies.length) + 1;
         const cookiename =
           "$" +
           this.state.selectedItem.itemname +

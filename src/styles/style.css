@@ -89,3 +89,15 @@ nav {
   flex-direction: row;
   justify-content: space-between;
 }
+
+#shoppingcartdescription {
+  width: 600px;
+}
+
+#shoppingcartdescription td {
+  height: 50px;
+}
+
+.price {
+  text-align: center;
+}
