@@ -20,7 +20,7 @@ const Cart = (props) => {
   }, [props.incart]);
 
   return (
-    <div>
+    <div onClick={props.show}>
       <i className="las la-shopping-cart"></i> {totalItems} items | {totalPrice}
       €
     </div>
