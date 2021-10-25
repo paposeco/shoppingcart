@@ -147,22 +147,9 @@ class Stock extends React.Component {
   handlerOfSubmit = function (event) {
     event.preventDefault();
     const iteminfo = this.getItemInfo(this.state.selectedItem);
-    this.setState(
-      {
-        itemsInCart: this.state.itemsInCart.concat(this.state.selectedItem),
-      },
-      () => {
-        const allcookies = document.cookie.split(";");
-        const cookienumber = Number(allcookies.length) + 1;
-        const cookiename =
-          "$" +
-          this.state.selectedItem.itemname +
-          "|" +
-          this.state.selectedItem.quantity +
-          "£";
-        document.cookie = `item${cookienumber}="${cookiename}" SameSite=Lax`;
-      }
-    );
+    this.setState({
+      itemsInCart: this.state.itemsInCart.concat(this.state.selectedItem),
+    });
     this.props.sendtocart([this.state.selectedItem, iteminfo]);
   };
 

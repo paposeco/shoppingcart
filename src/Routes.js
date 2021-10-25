@@ -32,7 +32,6 @@ const Routes = () => {
         <Route exact path="/" component={App} />
         <Route exact path="/shop" component={Shop} />
         <Route exact path="/contact" component={Contact} />
-        <Route exact path="/shoppingcart" component={DisplayCart} />
       </Switch>
     </BrowserRouter>
   );

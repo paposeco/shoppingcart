@@ -12,34 +12,19 @@ class DisplayCart extends React.Component {
   }
 
   componentDidMount() {
-    const allCookies = document.cookie;
-    const array = allCookies.split(";");
-    let filledarray = [];
-    let tracktotalprice = 0;
-    array.forEach((element, index) => {
-      const astring = element.substring(
-        Number(element.indexOf("$")) + 1,
-        element.indexOf("£")
-      );
-      const alias = astring.substring(0, astring.indexOf("|"));
-      const quantityselected = astring.substring(
-        Number(astring.indexOf("|")) + 1
-      );
-      const completeinfo = GetInfo(alias);
-      const obj = {
-        itemname: completeinfo.name,
-        price: Number(completeinfo.price) * Number(quantityselected),
-        quantity: quantityselected,
-        itemalias: alias,
-      };
-
-      filledarray.push(obj);
-      tracktotalprice = tracktotalprice + Number(obj.price);
-    });
-    this.setState({
-      itemsToShow: this.state.itemsToShow.concat(filledarray),
-      totalprice: this.state.totalprice + tracktotalprice,
-    });
+    const completeInfo = this.props.sendItems;
+    for (let i = 0; i < completeInfo.length; i++) {
+      let obj = new Object();
+      obj.quantity = completeInfo[i].quantity;
+      obj.itemname = completeInfo[i + 1].name;
+      obj.price =
+        Number(completeInfo[i + 1].price) * Number(completeInfo[i].quantity);
+      this.setState({
+        itemsToShow: this.state.itemsToShow.concat([obj]),
+        totalprice: this.state.totalprice + obj.price,
+      });
+      i++;
+    }
   }
 
   render() {
