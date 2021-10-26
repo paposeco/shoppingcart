@@ -8,22 +8,44 @@ class DisplayCart extends React.Component {
       itemsToShow: [],
       totalprice: 0,
     };
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
+  deleteItem = function (event) {};
+
   componentDidMount() {
-    const completeInfo = this.props.sendItems;
+    const completeInfo = this.props.sendItemsInCart;
+    let arrayOfItems = [];
+    let currenttotalprice = 0;
     for (let i = 0; i < completeInfo.length; i++) {
-      let obj = new Object();
-      obj.quantity = completeInfo[i].quantity;
-      obj.itemname = completeInfo[i + 1].name;
-      obj.price =
-        Number(completeInfo[i + 1].price) * Number(completeInfo[i].quantity);
-      this.setState({
-        itemsToShow: this.state.itemsToShow.concat([obj]),
-        totalprice: this.state.totalprice + obj.price,
+      const currentitemname = completeInfo[i + 1].name;
+      let indexOfItemInArray;
+      const itemInArray = this.state.itemsToShow.filter((element, index) => {
+        if (element.itemname === "currentitemname") {
+          indexOfItemInArray = index;
+          return element;
+        }
       });
+      if (itemInArray.length === 0) {
+        let obj = {};
+        obj.quantity = completeInfo[i].quantity;
+        obj.itemname = completeInfo[i + 1].name;
+        obj.price =
+          Number(completeInfo[i + 1].price) * Number(completeInfo[i].quantity);
+        arrayOfItems.push(obj);
+        currenttotalprice = currenttotalprice + obj.price;
+      } else {
+        const copyOfArray = Array.from(this.state.itemsToShow);
+        copyOfArray.splice(indexOfItemInArray, 1);
+        // falta fazer update ao objecto e depois junta lo ao array novamente
+      }
+
       i++;
     }
+    this.setState({
+      itemsToShow: this.state.itemsToShow.concat(arrayOfItems),
+      totalprice: currenttotalprice,
+    });
   }
 
   render() {
@@ -34,6 +56,7 @@ class DisplayCart extends React.Component {
             <tr>
               <th>Item</th>
               <th>Price</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -44,6 +67,9 @@ class DisplayCart extends React.Component {
                     {element.itemname}, Quantity: {element.quantity}
                   </td>
                   <td className="price">{element.price}€</td>
+                  <td>
+                    <button onClick={this.deleteItem}>Delete</button>
+                  </td>
                 </tr>
               );
             })}

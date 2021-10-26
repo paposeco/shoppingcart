@@ -54,7 +54,7 @@ class Cart extends React.Component {
         <h2>Shop</h2>
         <div onClick={this.handlerOfClicks}>
           <i className="las la-shopping-cart"></i> {this.state.totalItems} items
-          | {this.state.totalPrice}€
+          | {this.state.totalPrice}€<button>{this.props.showButton}</button>
         </div>
       </div>
     );

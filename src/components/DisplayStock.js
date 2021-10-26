@@ -179,12 +179,12 @@ class DisplayStock extends React.Component {
   getCurrentStock = function (itemalias) {
     const stockquantitiesarray = this.state.stockquantities;
     let stock;
-    const stockInfoForItem = stockquantitiesarray.filter((element) => {
-      if (element.alias === itemalias) {
-        stock = element.stock;
-        return element;
+    for (let i = 0; i < stockquantitiesarray.length; i++) {
+      if (stockquantitiesarray[i].alias === itemalias) {
+        stock = stockquantitiesarray[i].stock;
+        break;
       }
-    });
+    }
     return stock;
   };
 

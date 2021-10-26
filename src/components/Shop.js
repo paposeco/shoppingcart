@@ -1,6 +1,7 @@
-import Stock from "./Stock.js";
+import DisplayStock from "./DisplayStock.js";
 import React, { useState } from "react";
 import Cart from "./Cart.js";
+import DisplayCart from "./DisplayCart.js";
 
 const Shop = () => {
   const [itemsSelected, setItemsSelected] = useState([]);
@@ -88,8 +89,9 @@ const Shop = () => {
         <Cart
           sendItemsInCart={currentSelectedItem}
           toggleCart={handlerOfClick}
+          showButton="Go Back to Shop"
         />
-        <p>mostrar o que esta no cart</p>
+        <DisplayCart sendItemsInCart={itemsSelected} />
       </div>
     );
   } else {
@@ -98,22 +100,39 @@ const Shop = () => {
         <Cart
           sendItemsInCart={currentSelectedItem}
           toggleCart={handlerOfClick}
+          showButton="Checkout"
         />
         <div>
           <h3>Dreamy Yarn</h3>
-          <Stock supplier="dreamy" sendtocart={sendtocart} />
+          <DisplayStock
+            supplier="dreamy"
+            sendtocart={sendtocart}
+            sendCurrentStock={currentStock}
+          />
         </div>
         <div>
           <h3>Wooly Monster</h3>
-          <Stock supplier="woolymonster" sendtocart={sendtocart} />
+          <DisplayStock
+            supplier="woolymonster"
+            sendtocart={sendtocart}
+            sendCurrentStock={currentStock}
+          />
         </div>
         <div>
           <h3>Purlite</h3>
-          <Stock supplier="purlite" sendtocart={sendtocart} />
+          <DisplayStock
+            supplier="purlite"
+            sendtocart={sendtocart}
+            sendCurrentStock={currentStock}
+          />
         </div>
         <div>
           <h3>Variegations</h3>
-          <Stock supplier="variegations" sendtocart={sendtocart} />
+          <DisplayStock
+            supplier="variegations"
+            sendtocart={sendtocart}
+            sendCurrentStock={currentStock}
+          />
         </div>
         <p>
           Disclaimer: The skeins of yarn displayed are from non-fictional
