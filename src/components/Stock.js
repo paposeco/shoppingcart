@@ -127,7 +127,7 @@ class Stock extends React.Component {
         },
       ],
       itemsInCart: [],
-      selectedItem: { itemname: "", quantity: 0 },
+      selectedItem: { itemname: "", quantity: 0, transactionkey: uniqid() },
     };
     this.handlerOfChange = this.handlerOfChange.bind(this);
     this.handlerOfSubmit = this.handlerOfSubmit.bind(this);
@@ -140,12 +140,20 @@ class Stock extends React.Component {
       selectedItem: {
         itemname: event.target.dataset.product,
         quantity: event.target.value,
+        transactionkey: this.state.selectedItem.transactionkey,
       },
     });
   };
 
   handlerOfSubmit = function (event) {
     event.preventDefault();
+    this.setState({
+      selectedItem: {
+        itemname: this.state.selectedItem.itemname,
+        quantity: this.state.selectedItem.quantity,
+        transactionkey: uniqid(),
+      },
+    });
     const iteminfo = this.getItemInfo(this.state.selectedItem);
     this.setState({
       itemsInCart: this.state.itemsInCart.concat(this.state.selectedItem),
@@ -155,7 +163,6 @@ class Stock extends React.Component {
 
   getItemInfo = function (obj) {
     const selectedItemAlias = obj.itemname.substring(0, 3);
-    let item;
     if (selectedItemAlias === "dre") {
       const index = this.state.dreamyStock.findIndex(
         (anobject) => anobject.alias === obj.itemname
@@ -166,16 +173,19 @@ class Stock extends React.Component {
       const index = this.state.woolyStock.findIndex(
         (anobject) => anobject.alias === obj.itemname
       );
+      this.updateStock("woolyStock", index);
       return this.state.woolyStock[index];
     } else if (selectedItemAlias === "pur") {
       const index = this.state.purliteStock.findIndex(
         (anobject) => anobject.alias === obj.itemname
       );
+      this.updateStock("purliteStock", index);
       return this.state.purliteStock[index];
     } else {
       const index = this.state.variegationsStock.findIndex(
         (anobject) => anobject.alias === obj.itemname
       );
+      this.updateStock("variegationsStock", index);
       return this.state.variegationsStock[index];
     }
   };

@@ -1,6 +1,5 @@
 import React from "react";
 import uniqid from "uniqid";
-import GetInfo from "./CurrentStock.js";
 
 class DisplayCart extends React.Component {
   constructor(props) {

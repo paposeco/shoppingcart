@@ -1,19 +1,76 @@
 import Stock from "./Stock.js";
-import Cart from "./ShoppingCart.js";
-import React, { useState, useEffect } from "react";
-import DisplayCart from "./DisplayCart.js";
-import { Link } from "react-router-dom";
-import GetInfo from "./CurrentStock.js";
+import React, { useState } from "react";
+import Cart from "./Cart.js";
 
 const Shop = () => {
   const [itemsSelected, setItemsSelected] = useState([]);
   const [currentSelectedItem, setCurrentSelectedItem] = useState("");
-  const [updateCart, setUpdateCart] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const [currentStock, setCurrentStock] = useState([
+    {
+      stock: 3,
+      alias: "dreamyspeckles",
+    },
+    {
+      stock: 6,
+      alias: "dreamynatural",
+    },
+    { stock: 4, alias: "dreamycoldmorning" },
+    {
+      stock: 10,
+      alias: "woolybeige",
+    },
+    {
+      stock: 8,
+      alias: "woolygreen",
+    },
+    {
+      stock: 15,
+      alias: "woolynatural",
+    },
+    {
+      stock: 5,
+      alias: "purlitemarineblue",
+    },
+    {
+      stock: 8,
+      alias: "purlitesunnyyellow",
+    },
+    {
+      stock: 1,
+      alias: "purliteclassicblue",
+    },
+    {
+      stock: 2,
+      alias: "purliteclassicgrey",
+    },
+    {
+      stock: 4,
+      alias: "variegationsofgreen",
+    },
+    {
+      stock: 6,
+      alias: "variegationsofpurple",
+    },
+  ]);
+
   const sendtocart = function (props) {
     setItemsSelected(itemsSelected.concat(props));
     setCurrentSelectedItem(props);
-    setUpdateCart(true);
+    const itemAlias = props[0].itemname;
+    const quantity = props[0].quantity;
+    let indexfound;
+    const findItemInArray = currentStock.filter((element, index) => {
+      if (element.alias === itemAlias) {
+        indexfound = index;
+      }
+      return element.alias === itemAlias;
+    });
+    let shallowCopyOfArray = Array.from(currentStock);
+    shallowCopyOfArray.splice(indexfound, 1);
+    const newquantity = Number(findItemInArray[0].stock) - Number(quantity);
+    findItemInArray[0].stock = newquantity;
+    setCurrentStock(shallowCopyOfArray.concat(findItemInArray));
   };
 
   const handlerOfClick = function (event) {
@@ -21,21 +78,27 @@ const Shop = () => {
       setClicked(false);
     } else {
       setClicked(true);
+      setCurrentSelectedItem("");
     }
   };
 
-  // de cada vez que clico aumenta o numero de items
-
-  if (!clicked) {
+  if (clicked) {
     return (
       <div className="main">
-        <div id="shopheader">
-          <h2>Shop</h2>
-          <div onClick={handlerOfClick}>
-            <Cart incart={currentSelectedItem} />
-          </div>
-        </div>
-
+        <Cart
+          sendItemsInCart={currentSelectedItem}
+          toggleCart={handlerOfClick}
+        />
+        <p>mostrar o que esta no cart</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className="main">
+        <Cart
+          sendItemsInCart={currentSelectedItem}
+          toggleCart={handlerOfClick}
+        />
         <div>
           <h3>Dreamy Yarn</h3>
           <Stock supplier="dreamy" sendtocart={sendtocart} />
@@ -56,20 +119,6 @@ const Shop = () => {
           Disclaimer: The skeins of yarn displayed are from non-fictional
           companies, but the photos are mine. They are part of my yarn stash. :D
         </p>
-      </div>
-    );
-  } else {
-    return (
-      <div className="main">
-        <div id="shopheader">
-          <h2>Shop</h2>
-          <div onClick={handlerOfClick}>
-            <Cart incart={itemsSelected} onClick={handlerOfClick} />
-          </div>
-        </div>
-        <div>
-          <DisplayCart sendItems={itemsSelected} />
-        </div>
       </div>
     );
   }

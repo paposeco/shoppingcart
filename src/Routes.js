@@ -2,7 +2,7 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import App from "./App";
 import Shop from "./components/Shop.js";
 import Contact from "./components/Contact.js";
-import DisplayCart from "./components/DisplayCart.js";
+//import DisplayCart from "./components/DisplayCart.js";
 
 const Routes = () => {
   return (
