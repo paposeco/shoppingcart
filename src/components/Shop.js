@@ -97,7 +97,21 @@ const Shop = () => {
     newItemsSelected.splice(indexOfItem, 2);
     setItemsSelected(newItemsSelected);
     setDeleteFromCart(target);
-    // update stock
+
+    //update stock
+    let indexOfItemInStock;
+    let itemToUpdateInStock = currentStock.filter((element, index) => {
+      if (element.alias === target) {
+        indexOfItemInStock = index;
+      }
+      return element.alias === target;
+    });
+    let copyOfStock = Array.from(currentStock);
+    copyOfStock.splice(indexOfItemInStock, 1);
+    const newquantity =
+      Number(itemToUpdateInStock[0].stock) + Number(itemToDelete[0].quantity);
+    itemToUpdateInStock[0].stock = newquantity;
+    setCurrentStock(copyOfStock.concat(itemToUpdateInStock));
   };
 
   if (clicked) {
@@ -113,6 +127,14 @@ const Shop = () => {
           sendItemsInCart={itemsSelected}
           deleteInShop={deleteItem}
         />
+        <footer>
+          <a href="https:github.com/paposeco/" alt="github">
+            <span>
+              <i className="lab la-github"></i>
+            </span>
+            Fabi
+          </a>
+        </footer>
       </div>
     );
   } else {
@@ -160,6 +182,14 @@ const Shop = () => {
           Disclaimer: The skeins of yarn displayed are from non-fictional
           companies, but the photos are mine. They are part of my yarn stash. :D
         </p>
+        <footer>
+          <a href="https:github.com/paposeco/" alt="github">
+            <span>
+              <i className="lab la-github"></i>
+            </span>
+            Fabi
+          </a>
+        </footer>
       </div>
     );
   }

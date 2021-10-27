@@ -27,7 +27,7 @@ class Cart extends React.Component {
   deleteItem(target) {
     let indexOfItem;
     const currentItemsInCart = Array.from(this.state.itemsInCart);
-    const itemToDelete = currentItemsInCart.filter((element, index) => {
+    currentItemsInCart.filter((element, index) => {
       if (element.itemname === target) {
         indexOfItem = index;
       }
@@ -86,8 +86,12 @@ class Cart extends React.Component {
       <div id="shopheader">
         <h2>Shop</h2>
         <div onClick={this.handlerOfClicks}>
-          <i className="las la-shopping-cart"></i> {this.state.totalItems} items
-          | {this.state.totalPrice}€<button>{this.props.showButton}</button>
+          <i className="las la-shopping-cart"></i>
+          <span id="carttotal">
+            {" "}
+            {this.state.totalItems} items | {this.state.totalPrice}€
+          </span>
+          <button>{this.props.showButton}</button>
         </div>
       </div>
     );

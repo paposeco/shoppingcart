@@ -218,14 +218,13 @@ class DisplayStock extends React.Component {
         <ul className="stock">
           {currentsupplier.map((item) => (
             <li key={item.id}>
-              <img src={item.image} alt={item.alias} />
+              <h4>{item.name}</h4>
+              <div>
+                <img src={item.image} alt={item.alias} />
+              </div>
               <div className="productDesc">
-                <h4>{item.name}</h4>
-                <p>Price: {item.price}€/skein</p>
                 <form onSubmit={this.handlerOfSubmit}>
-                  <label>
-                    Quantity: ({this.getCurrentStock(item.alias)} available)
-                  </label>
+                  <label>{this.getCurrentStock(item.alias)} in stock</label>
                   <input
                     type="number"
                     min="0"
@@ -235,6 +234,7 @@ class DisplayStock extends React.Component {
                     onChange={this.handlerOfChange}
                     data-product={item.alias}
                   />
+
                   <button data-product={item.alias}>
                     <i
                       className="las la-cart-plus"
@@ -242,6 +242,7 @@ class DisplayStock extends React.Component {
                     ></i>
                   </button>
                 </form>
+                <p>{item.price}€/uni</p>
               </div>
             </li>
           ))}
