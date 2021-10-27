@@ -11,6 +11,7 @@ class Cart extends React.Component {
       updateCart: true,
     };
     this.handlerOfClicks = this.handlerOfClicks.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   handlerOfClicks(event) {
@@ -23,11 +24,40 @@ class Cart extends React.Component {
     this.props.toggleCart();
   }
 
+  deleteItem(target) {
+    let indexOfItem;
+    const currentItemsInCart = Array.from(this.state.itemsInCart);
+    const itemToDelete = currentItemsInCart.filter((element, index) => {
+      if (element.itemname === target) {
+        indexOfItem = index;
+      }
+      return element.itemname === target;
+    });
+    const numberOfItems = currentItemsInCart[indexOfItem].quantity;
+    const priceOfItem = currentItemsInCart[indexOfItem + 1].price;
+    const subTotal = Number(numberOfItems) * Number(priceOfItem);
+    currentItemsInCart.splice(indexOfItem, 2);
+    this.setState({
+      itemsInCart: currentItemsInCart,
+      totalItems: Number(this.state.totalItems) - numberOfItems,
+      totalPrice: Number(this.state.totalPrice) - subTotal,
+    });
+  }
+
+  //update stock
+
   componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.deleteFromCart !== this.props.deleteFromCart &&
+      this.props.deleteFromCart !== ""
+    ) {
+      this.deleteItem(this.props.deleteFromCart);
+    }
     if (!this.state.showCartContent && this.state.updateCart) {
       if (this.props.sendItemsInCart === "") {
         return;
       }
+
       if (
         prevProps.sendItemsInCart === "" ||
         prevProps.sendItemsInCart[0].transactionkey !==
@@ -40,7 +70,10 @@ class Cart extends React.Component {
         const newtotalprice = this.state.totalPrice + itemprice * itemquantity;
         const newquantity = this.state.totalItems + itemquantity;
         this.setState({
-          itemsInCart: this.state.itemsInCart.concat(receivedItemObj),
+          itemsInCart: this.state.itemsInCart.concat(
+            receivedItemObj,
+            receivedItemInfo
+          ),
           totalItems: newquantity,
           totalPrice: newtotalprice,
         });

@@ -223,7 +223,6 @@ class DisplayStock extends React.Component {
                 <h4>{item.name}</h4>
                 <p>Price: {item.price}€/skein</p>
                 <form onSubmit={this.handlerOfSubmit}>
-                  {/* <label>Quantity: ({item.stock} available)</label> */}
                   <label>
                     Quantity: ({this.getCurrentStock(item.alias)} available)
                   </label>

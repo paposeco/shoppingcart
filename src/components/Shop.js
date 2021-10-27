@@ -7,6 +7,7 @@ const Shop = () => {
   const [itemsSelected, setItemsSelected] = useState([]);
   const [currentSelectedItem, setCurrentSelectedItem] = useState("");
   const [clicked, setClicked] = useState(false);
+  const [deleteFromCart, setDeleteFromCart] = useState("");
   const [currentStock, setCurrentStock] = useState([
     {
       stock: 3,
@@ -72,6 +73,7 @@ const Shop = () => {
     const newquantity = Number(findItemInArray[0].stock) - Number(quantity);
     findItemInArray[0].stock = newquantity;
     setCurrentStock(shallowCopyOfArray.concat(findItemInArray));
+    setDeleteFromCart("");
   };
 
   const handlerOfClick = function (event) {
@@ -83,6 +85,21 @@ const Shop = () => {
     }
   };
 
+  const deleteItem = function (target) {
+    let indexOfItem;
+    const itemToDelete = itemsSelected.filter((element, index) => {
+      if (element.itemname === target) {
+        indexOfItem = index;
+      }
+      return element.itemname === target;
+    });
+    const newItemsSelected = Array.from(itemsSelected);
+    newItemsSelected.splice(indexOfItem, 2);
+    setItemsSelected(newItemsSelected);
+    setDeleteFromCart(target);
+    // update stock
+  };
+
   if (clicked) {
     return (
       <div className="main">
@@ -90,8 +107,12 @@ const Shop = () => {
           sendItemsInCart={currentSelectedItem}
           toggleCart={handlerOfClick}
           showButton="Go Back to Shop"
+          deleteFromCart={deleteFromCart}
         />
-        <DisplayCart sendItemsInCart={itemsSelected} />
+        <DisplayCart
+          sendItemsInCart={itemsSelected}
+          deleteInShop={deleteItem}
+        />
       </div>
     );
   } else {
@@ -101,6 +122,7 @@ const Shop = () => {
           sendItemsInCart={currentSelectedItem}
           toggleCart={handlerOfClick}
           showButton="Checkout"
+          deleteFromCart={deleteFromCart}
         />
         <div>
           <h3>Dreamy Yarn</h3>

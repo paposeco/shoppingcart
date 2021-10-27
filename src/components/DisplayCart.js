@@ -11,35 +11,61 @@ class DisplayCart extends React.Component {
     this.deleteItem = this.deleteItem.bind(this);
   }
 
-  deleteItem = function (event) {};
+  deleteItem = function (event) {
+    const target = event.target.dataset.itemalias;
+    const itemsDisplayed = Array.from(this.state.itemsToShow);
+    let indexToDelete = 0;
+    const itemToDelete = itemsDisplayed.filter((element, index) => {
+      if (element.alias === target) {
+        indexToDelete = index;
+      }
+      return element.alias === target;
+    });
+    itemsDisplayed.splice(indexToDelete, 1);
+    const itemprice = Number(itemToDelete[0].price);
+    this.setState({
+      itemsToShow: itemsDisplayed,
+      totalprice: Number(this.state.totalprice) - itemprice,
+    });
+    this.props.deleteInShop(target);
+  };
 
   componentDidMount() {
     const completeInfo = this.props.sendItemsInCart;
     let arrayOfItems = [];
     let currenttotalprice = 0;
     for (let i = 0; i < completeInfo.length; i++) {
-      const currentitemname = completeInfo[i + 1].name;
+      const currentitemalias = completeInfo[i].itemname;
       let indexOfItemInArray;
-      const itemInArray = this.state.itemsToShow.filter((element, index) => {
-        if (element.itemname === "currentitemname") {
+      const itemInArray = arrayOfItems.filter((element, index) => {
+        if (element.alias === currentitemalias) {
           indexOfItemInArray = index;
-          return element;
         }
+        return element.alias === currentitemalias;
       });
       if (itemInArray.length === 0) {
         let obj = {};
         obj.quantity = completeInfo[i].quantity;
-        obj.itemname = completeInfo[i + 1].name;
+        obj.name = completeInfo[i + 1].name;
+        obj.alias = completeInfo[i].itemname;
         obj.price =
           Number(completeInfo[i + 1].price) * Number(completeInfo[i].quantity);
         arrayOfItems.push(obj);
         currenttotalprice = currenttotalprice + obj.price;
       } else {
-        const copyOfArray = Array.from(this.state.itemsToShow);
-        copyOfArray.splice(indexOfItemInArray, 1);
-        // falta fazer update ao objecto e depois junta lo ao array novamente
+        arrayOfItems.splice(indexOfItemInArray, 1);
+        let obj = {};
+        const updatedQuantity =
+          Number(itemInArray[0].quantity) + Number(completeInfo[i].quantity);
+        obj.quantity = updatedQuantity;
+        obj.name = completeInfo[i + 1].name;
+        obj.price = Number(completeInfo[i + 1].price) * updatedQuantity;
+        obj.alias = completeInfo[i].itemname;
+        const previousPrice =
+          itemInArray[0].quantity * completeInfo[i + 1].price;
+        arrayOfItems.push(obj);
+        currenttotalprice = currenttotalprice - previousPrice + obj.price;
       }
-
       i++;
     }
     this.setState({
@@ -64,11 +90,16 @@ class DisplayCart extends React.Component {
               return (
                 <tr key={uniqid()}>
                   <td>
-                    {element.itemname}, Quantity: {element.quantity}
+                    {element.name}, Quantity: {element.quantity}
                   </td>
                   <td className="price">{element.price}€</td>
                   <td>
-                    <button onClick={this.deleteItem}>Delete</button>
+                    <button
+                      onClick={this.deleteItem}
+                      data-itemalias={element.alias}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               );
