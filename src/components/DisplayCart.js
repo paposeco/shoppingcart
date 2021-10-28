@@ -8,30 +8,11 @@ class DisplayCart extends React.Component {
       itemsToShow: [],
       totalprice: 0,
     };
-    this.deleteItem = this.deleteItem.bind(this);
+    this.displayItems = this.displayItems.bind(this);
   }
 
-  deleteItem = function (event) {
-    const target = event.target.dataset.itemalias;
-    const itemsDisplayed = Array.from(this.state.itemsToShow);
-    let indexToDelete = 0;
-    const itemToDelete = itemsDisplayed.filter((element, index) => {
-      if (element.alias === target) {
-        indexToDelete = index;
-      }
-      return element.alias === target;
-    });
-    itemsDisplayed.splice(indexToDelete, 1);
-    const itemprice = Number(itemToDelete[0].price);
-    this.setState({
-      itemsToShow: itemsDisplayed,
-      totalprice: Number(this.state.totalprice) - itemprice,
-    });
-    this.props.deleteInShop(target);
-  };
-
-  componentDidMount() {
-    const completeInfo = this.props.sendItemsInCart;
+  displayItems = function (arrayofitemsreceived) {
+    const completeInfo = arrayofitemsreceived;
     let arrayOfItems = [];
     let currenttotalprice = 0;
     for (let i = 0; i < completeInfo.length; i++) {
@@ -48,6 +29,7 @@ class DisplayCart extends React.Component {
         obj.quantity = completeInfo[i].quantity;
         obj.name = completeInfo[i + 1].name;
         obj.alias = completeInfo[i].itemname;
+        obj.image = completeInfo[i + 1].image;
         obj.price =
           Number(completeInfo[i + 1].price) * Number(completeInfo[i].quantity);
         arrayOfItems.push(obj);
@@ -61,6 +43,7 @@ class DisplayCart extends React.Component {
         obj.name = completeInfo[i + 1].name;
         obj.price = Number(completeInfo[i + 1].price) * updatedQuantity;
         obj.alias = completeInfo[i].itemname;
+        obj.image = completeInfo[i + 1].image;
         const previousPrice =
           itemInArray[0].quantity * completeInfo[i + 1].price;
         arrayOfItems.push(obj);
@@ -69,19 +52,30 @@ class DisplayCart extends React.Component {
       i++;
     }
     this.setState({
-      itemsToShow: this.state.itemsToShow.concat(arrayOfItems),
+      itemsToShow: arrayOfItems,
       totalprice: currenttotalprice,
     });
+  };
+
+  componentDidMount() {
+    this.displayItems(this.props.itemsincart);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.itemsincart.length !== this.props.itemsincart.length) {
+      this.displayItems(this.props.itemsincart);
+    }
   }
 
   render() {
     return (
-      <div>
+      <div className="main">
+        <h1>Shopping Cart</h1>
         <table id="shoppingcartdescription">
           <thead>
             <tr>
               <th>Item</th>
-              <th>Price</th>
+              <th className="price">Price</th>
               <th></th>
             </tr>
           </thead>
@@ -89,16 +83,23 @@ class DisplayCart extends React.Component {
             {this.state.itemsToShow.map((element) => {
               return (
                 <tr key={uniqid()}>
-                  <td>
-                    {element.name}, Quantity: {element.quantity}
+                  <td className="displayProductDesc">
+                    <img
+                      src={element.image}
+                      alt={`thumbnail${element.image}`}
+                      className="thumbnailProduct"
+                    />
+                    <span>
+                      {element.name} ({element.quantity})
+                    </span>
                   </td>
                   <td className="price">{element.price}€</td>
-                  <td>
+                  <td className="deletebutton">
                     <button
-                      onClick={this.deleteItem}
+                      onClick={this.props.deleteitem}
                       data-itemalias={element.alias}
                     >
-                      Delete
+                      <i className="las la-trash-alt"></i>
                     </button>
                   </td>
                 </tr>
@@ -118,3 +119,6 @@ class DisplayCart extends React.Component {
 }
 
 export default DisplayCart;
+
+// falta fazer reset ao display cart quando se apaga tudo
+// quando nao ha quantidade nao deve fazer nada quando se clica no botao

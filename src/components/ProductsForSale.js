@@ -17,7 +17,7 @@ import pyellowI from "../images/yarn/purlite/sunnyyellow.jpg";
 import vgreenI from "../images/yarn/variegations/green.jpg";
 import vpurpleI from "../images/yarn/variegations/purple.jpg";
 
-class DisplayStock extends React.Component {
+class ProductsForSale extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -218,7 +218,7 @@ class DisplayStock extends React.Component {
         <ul className="stock">
           {currentsupplier.map((item) => (
             <li key={item.id}>
-              <h4>{item.name}</h4>
+              <h3>{item.name}</h3>
               <div>
                 <img src={item.image} alt={item.alias} />
               </div>
@@ -252,4 +252,4 @@ class DisplayStock extends React.Component {
   }
 }
 
-export default DisplayStock;
+export default ProductsForSale;
