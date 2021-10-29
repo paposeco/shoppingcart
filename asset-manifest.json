@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/shoppingcart/static/css/main.06a902a5.chunk.css",
+    "main.js": "/shoppingcart/static/js/main.f19b6465.chunk.js",
+    "main.js.map": "/shoppingcart/static/js/main.f19b6465.chunk.js.map",
+    "runtime-main.js": "/shoppingcart/static/js/runtime-main.1d8a22ef.js",
+    "runtime-main.js.map": "/shoppingcart/static/js/runtime-main.1d8a22ef.js.map",
+    "static/js/2.7f53abe3.chunk.js": "/shoppingcart/static/js/2.7f53abe3.chunk.js",
+    "static/js/2.7f53abe3.chunk.js.map": "/shoppingcart/static/js/2.7f53abe3.chunk.js.map",
+    "index.html": "/shoppingcart/index.html",
+    "static/css/main.06a902a5.chunk.css.map": "/shoppingcart/static/css/main.06a902a5.chunk.css.map",
+    "static/js/2.7f53abe3.chunk.js.LICENSE.txt": "/shoppingcart/static/js/2.7f53abe3.chunk.js.LICENSE.txt",
+    "static/media/beige.840aa4ea.jpg": "/shoppingcart/static/media/beige.840aa4ea.jpg",
+    "static/media/classicblue.33023f79.jpg": "/shoppingcart/static/media/classicblue.33023f79.jpg",
+    "static/media/classicgrey.4c04d4bf.jpg": "/shoppingcart/static/media/classicgrey.4c04d4bf.jpg",
+    "static/media/coldmorning.0fc703f4.jpeg": "/shoppingcart/static/media/coldmorning.0fc703f4.jpeg",
+    "static/media/dreamy.3d225330.png": "/shoppingcart/static/media/dreamy.3d225330.png",
+    "static/media/green.97a06eba.jpg": "/shoppingcart/static/media/green.97a06eba.jpg",
+    "static/media/green.bf3f7f5f.jpg": "/shoppingcart/static/media/green.bf3f7f5f.jpg",
+    "static/media/marineblue.19838862.jpg": "/shoppingcart/static/media/marineblue.19838862.jpg",
+    "static/media/natural.2b485697.jpg": "/shoppingcart/static/media/natural.2b485697.jpg",
+    "static/media/natural.6f770110.jpg": "/shoppingcart/static/media/natural.6f770110.jpg",
+    "static/media/purlite.d1d95ea3.png": "/shoppingcart/static/media/purlite.d1d95ea3.png",
+    "static/media/purple.188507f5.jpg": "/shoppingcart/static/media/purple.188507f5.jpg",
+    "static/media/sheep.f43ac083.png": "/shoppingcart/static/media/sheep.f43ac083.png",
+    "static/media/speckles.0fff78a3.jpg": "/shoppingcart/static/media/speckles.0fff78a3.jpg",
+    "static/media/sunnyyellow.850aede4.jpg": "/shoppingcart/static/media/sunnyyellow.850aede4.jpg",
+    "static/media/varie.11c3addd.png": "/shoppingcart/static/media/varie.11c3addd.png",
+    "static/media/wooly.3a4fa911.png": "/shoppingcart/static/media/wooly.3a4fa911.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1d8a22ef.js",
+    "static/js/2.7f53abe3.chunk.js",
+    "static/css/main.06a902a5.chunk.css",
+    "static/js/main.f19b6465.chunk.js"
+  ]
+}
