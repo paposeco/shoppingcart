@@ -185,6 +185,7 @@ nav ul li:hover {
 
 .inputquantity {
   width: 50px;
+  font-size: 16px;
 }
 
 input:focus {
@@ -204,6 +205,10 @@ input:focus {
   flex-direction: row;
   align-items: center;
   gap: 4px;
+}
+
+.productDesc button {
+  height: 27px;
 }
 
 .price {
@@ -401,6 +406,11 @@ input[type="submit"]:hover {
 }
 #checkout button {
   padding: 10px 20px;
+}
+
+.la-cart-plus {
+  font-size: 18px;
+  vertical-align: middle;
 }
 
 @media screen and (min-width: 700px) and (max-width: 1200px) {
