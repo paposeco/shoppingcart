@@ -2,6 +2,7 @@ import React from "react";
 import uniqid from "uniqid";
 import sheep from "../images/sheep.png";
 
+//displays cart's content
 class DisplayCart extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +14,7 @@ class DisplayCart extends React.Component {
     this.checkout = this.checkout.bind(this);
   }
 
+  // receives items in cart from Route.js and creates new object with information to display; at the end updates totalprice
   displayItems = function (arrayofitemsreceived) {
     const completeInfo = arrayofitemsreceived;
     let arrayOfItems = [];
@@ -59,6 +61,7 @@ class DisplayCart extends React.Component {
     });
   };
 
+  // fake checkout button
   checkout = function (event) {
     alert("This a pretend button on a pretend online store.");
   };
@@ -67,12 +70,14 @@ class DisplayCart extends React.Component {
     this.displayItems(this.props.itemsincart);
   }
 
+  // if between renders there was a change on items in cart (for instance, if the user delete an item), runs displayitems again
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.itemsincart.length !== this.props.itemsincart.length) {
       this.displayItems(this.props.itemsincart);
     }
   }
 
+  // renders differently if cart is empty
   render() {
     if (this.state.itemsToShow.length === 0) {
       return (
@@ -169,5 +174,3 @@ class DisplayCart extends React.Component {
 }
 
 export default DisplayCart;
-
-//checkout

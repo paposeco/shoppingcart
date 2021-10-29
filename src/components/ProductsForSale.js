@@ -17,6 +17,7 @@ import pyellowI from "../images/yarn/purlite/sunnyyellow.jpg";
 import vgreenI from "../images/yarn/variegations/green.jpg";
 import vpurpleI from "../images/yarn/variegations/purple.jpg";
 
+// form for purchasing items and items information
 class ProductsForSale extends React.Component {
   constructor(props) {
     super(props);
@@ -134,6 +135,7 @@ class ProductsForSale extends React.Component {
     });
   };
 
+  // creates object for item purchased with a name, quantity and uniqid; adds item to items in cart; gets information about the item from supplier; sends both the object created and the obj from supplier to Shop.js
   handlerOfSubmit = function (event) {
     event.preventDefault();
     this.setState({
@@ -151,6 +153,7 @@ class ProductsForSale extends React.Component {
     event.target.reset();
   };
 
+  // look for item information according to the item's supplier
   getItemInfo = function (obj) {
     const selectedItemAlias = obj.itemname.substring(0, 3);
     if (selectedItemAlias === "dre") {
@@ -188,6 +191,7 @@ class ProductsForSale extends React.Component {
     return stock;
   };
 
+  // if there was a change in stock between renders, updates stock quantities array
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.sendCurrentStock !== this.props.sendCurrentStock) {
       this.setState({
@@ -196,6 +200,7 @@ class ProductsForSale extends React.Component {
     }
   }
 
+  //sets the initial stock available according to info sent from Shop.js
   componentDidMount() {
     this.setState({
       stockquantities: this.props.sendCurrentStock,
@@ -238,7 +243,7 @@ class ProductsForSale extends React.Component {
                     data-product={item.alias}
                   />
 
-                  <button data-product={item.alias}>
+                  <button data-product={item.alias} title="Add to Cart">
                     <i
                       className="las la-cart-plus"
                       data-product={item.alias}

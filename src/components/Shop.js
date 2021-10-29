@@ -5,9 +5,10 @@ import purlite from "../images/purlite.png";
 import varie from "../images/varie.png";
 import React, { useState, useEffect } from "react";
 
+// stock quantity availability is tracked here
 const Shop = (props) => {
   const [itemsSelected, setItemsSelected] = useState([]);
-  const [cartUpdated, setCartUpdated] = useState(false);
+  const [stockUpdated, setStockUpdated] = useState(false);
   const [currentStock, setCurrentStock] = useState([
     {
       stock: 3,
@@ -56,6 +57,7 @@ const Shop = (props) => {
     },
   ]);
 
+  // receives information from ProductsForSale, looks for item in stock and updates stock; forwards information to Routes.js
   const sendtocart = function (items) {
     setItemsSelected(itemsSelected.concat(items));
     const itemAlias = items[0].itemname;
@@ -75,6 +77,7 @@ const Shop = (props) => {
     props.additemtocart(items);
   };
 
+  // if the user exits the shop and comes back with items still in cart, updates stock
   const updateStock = function () {
     const currentItemsInCart = props.itemsincart;
     for (let i = 0; i < currentItemsInCart.length; i++) {
@@ -92,17 +95,20 @@ const Shop = (props) => {
       const newquantity = Number(findItemInArray[0].stock) - Number(quantity);
       findItemInArray[0].stock = newquantity;
       setCurrentStock(shallowCopyOfArray.concat(findItemInArray));
+      // every item added to cart has two arrays with information, so every time the stock is updated, the loop advances +2 indexes
       i++;
     }
-    setCartUpdated(true);
+    setStockUpdated(true);
   };
 
   useEffect(() => {
-    if (!cartUpdated) {
+    //only update stock on render once
+    if (!stockUpdated) {
       updateStock();
     }
   });
 
+  // each supplier is displayed independently with ProductsForSale component. currentstock is sent so that the quantity available of each item is displayed
   return (
     <div className="main">
       <h1>Shop</h1>

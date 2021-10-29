@@ -6,10 +6,12 @@ import Contact from "./components/Contact.js";
 import DisplayCart from "./components/DisplayCart.js";
 
 const Routes = () => {
+  //lifted state of items in cart so that when the user navigates across the website, the cart remains the same
   const [itemsInCart, setItemsInCart] = useState([]);
   const [numberItemsInCart, setNumberItemsInCart] = useState(0);
   const [totalPriceInCart, setTotalPriceInCart] = useState(0);
-  const updateCart = function (item) {
+  //adds item to array of items and updates total price and total number of items
+  const addItemToCart = function (item) {
     setItemsInCart(itemsInCart.concat(item));
     const itemquantity = Number(item[0].quantity);
     setNumberItemsInCart(numberItemsInCart + itemquantity);
@@ -17,6 +19,7 @@ const Routes = () => {
     setTotalPriceInCart(totalPriceInCart + itemsubtotal);
   };
 
+  //delete selected item; if there are no more items in cart, resets cart
   const deleteItem = function (event) {
     if (itemsInCart.length === 2) {
       setItemsInCart([]);
@@ -96,7 +99,7 @@ const Routes = () => {
           <Homepage itemsincart={itemsInCart} />
         </Route>
         <Route exact path="/shop">
-          <Shop itemsincart={itemsInCart} additemtocart={updateCart} />
+          <Shop itemsincart={itemsInCart} additemtocart={addItemToCart} />
         </Route>
         <Route exact path="/contact">
           <Contact itemsincart={itemsInCart} />
