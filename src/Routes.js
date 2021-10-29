@@ -47,7 +47,7 @@ const Routes = () => {
   };
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/shoppingcart/">
       <div id="headertitle">
         <h1>
           <a href="/" title="Homepage">
