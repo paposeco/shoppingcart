@@ -359,6 +359,11 @@ input[type="submit"] {
   border: solid 1px grey;
 }
 
+input[type="submit"] {
+  color: black;
+  border-radius: none;
+}
+
 button:hover,
 input[type="submit"]:hover {
   cursor: pointer;
@@ -485,14 +490,14 @@ input[type="submit"]:hover {
     width: 80%;
   }
   #contact form label {
-    width: 150px;
+    width: 95%;
     margin: 0;
   }
 
   #contact form input[type="email"],
   #contact form input[type="text"],
   #contact form input[type="textarea"] {
-    width: 280px;
+    width: 100%;
   }
   .thumbnailProduct {
     max-width: 55px;
