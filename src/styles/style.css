@@ -4,12 +4,13 @@ html {
 
 body {
   width: 99%;
-
   box-sizing: border-box;
 }
 
 h1 {
   font-family: Monoton;
+  font-weight: normal;
+  font-size: 40px;
 }
 
 h2,
@@ -34,7 +35,6 @@ footer {
 }
 
 footer {
-  /* flex-grow: 1; */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -42,6 +42,23 @@ footer {
   margin-top: 20px;
   margin-bottom: 0px;
 }
+
+footer a {
+  color: black;
+}
+
+footer a:hover {
+  color: #e99644;
+}
+
+footer a:visited {
+  color: #744b22;
+}
+
+footer a:visited:hover {
+  color: #e99644;
+}
+
 h1 a {
   text-decoration: none;
   color: black;
@@ -72,10 +89,15 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
+  color: black;
 }
 
 nav ul li a:visited {
   color: black;
+}
+
+nav ul li:hover {
+  text-decoration: underline overline grey 1px;
 }
 
 .main {
@@ -83,11 +105,18 @@ nav ul li a:visited {
   margin: 20px auto;
   display: flex;
   flex-direction: column;
-  /* min-height: 75vh; */
+  min-height: 68vh;
+  justify-content: flex-start;
 }
 
 .main h1 {
   font-family: Nova Mono;
+  text-align: center;
+}
+
+.main table {
+  width: 80%;
+  margin: 20px auto;
 }
 
 #suppliers {
@@ -128,6 +157,10 @@ nav ul li a:visited {
   vertical-align: middle;
 }
 
+.shoppingcarticon:hover {
+  text-decoration: none;
+}
+
 #itemnumber {
   display: inline-block;
   border-radius: 20px;
@@ -154,20 +187,23 @@ nav ul li a:visited {
   width: 50px;
 }
 
+input:focus {
+  outline: dotted 2px #e99644;
+}
+
 .productDesc {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  line-height: 2;
 }
 
-#shoppingcartdescription {
-  width: 80%;
-  margin: auto;
-}
-
-#shoppingcartdescription td {
-  /* max-width: 100px; */
+.productDesc form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
 }
 
 .price {
@@ -176,7 +212,7 @@ nav ul li a:visited {
 }
 
 .thumbnailProduct {
-  max-height: 50px;
+  max-width: 150px;
   padding: 10px;
 }
 
@@ -195,8 +231,10 @@ nav ul li a:visited {
   color: grey;
 }
 
-#slogan img {
+.logo {
   width: 150px;
+  display: block;
+  margin: auto;
 }
 
 .shopSupplierThumbnail {
@@ -243,15 +281,217 @@ nav ul li a:visited {
   justify-content: space-between;
   align-items: center;
 }
+
 #socialmedia {
   display: inline-block;
   font-size: 30px;
+}
+
+#socialmedia a {
+  color: black;
 }
 
 #socialmedia a:visited {
   color: black;
 }
 
+#socialmedia a:hover {
+  color: #e99644;
+}
+
 .deletebutton {
   text-align: left;
+}
+
+.total {
+  font-weight: bolder;
+  line-height: 3;
+  font-size: 20px;
+}
+
+.total > td {
+  padding-left: 15px;
+}
+
+table {
+  border-collapse: collapse;
+  font-family: arial;
+}
+
+table > thead > tr > th {
+  text-align: left;
+  padding-left: 15px;
+}
+
+table > thead > tr {
+  border-bottom: none;
+}
+
+table tr {
+  border-bottom: 1px dotted lightgrey;
+}
+
+table > tfoot > tr {
+  border-bottom: none;
+}
+
+#empty {
+  text-align: center;
+}
+
+button,
+input[type="submit"] {
+  background: #fdfdfc;
+  outline: none;
+  box-shadow: none;
+  border: solid 1px grey;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 2px grey;
+}
+
+#contact {
+  width: 80%;
+  margin: 20px auto;
+}
+
+#contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 40px auto;
+  padding: 50px 20px;
+  border: solid 1px grey;
+  width: 45%;
+}
+
+#contact form label {
+  width: 350px;
+  line-height: 2;
+  margin: auto;
+  font-size: 20px;
+}
+
+#contact form input {
+  width: 350px;
+  height: 30px;
+}
+
+#contact form input[type="submit"] {
+  width: 200px;
+  margin: 20px auto 0px auto;
+  font-family: Nova Mono;
+  font-size: 16px;
+}
+
+#messagereceived {
+  width: 45%;
+  margin: 40px auto;
+  font-size: 16px;
+  border: solid 1px grey;
+  padding: 30px 30px;
+}
+
+#checkout {
+  text-align: center;
+  margin-bottom: 15px;
+}
+#checkout button {
+  padding: 10px 20px;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1200px) {
+  #root {
+    width: 85vw;
+  }
+  .main table {
+    width: 95%;
+  }
+  #contact {
+    width: 95%;
+  }
+  #contact form {
+    width: 70%;
+  }
+  #top {
+    position: sticky;
+    top: 0px;
+    background: #fdfdfc;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  #root {
+    width: 93vw;
+    margin: 2vw;
+    padding: 0;
+  }
+  #headertitle div {
+    flex-shrink: 0;
+  }
+  nav ul li {
+    font-size: 22px;
+    min-width: 75px;
+  }
+  #suppliers {
+    grid-template-columns: 1fr 1fr;
+  }
+  #hotrightnow {
+    width: 100%;
+    flex-direction: column;
+  }
+  .shopSupplierThumbnail {
+    width: 150px;
+  }
+  .suppliershelf {
+    margin-top: 40px;
+  }
+  .stock {
+    grid-template-columns: 1fr;
+  }
+  #dreamyyarn {
+    margin-top: 20px;
+  }
+  .main table {
+    width: 100%;
+  }
+  #contact {
+    width: 95%;
+  }
+  #contact form {
+    width: 80%;
+  }
+  #contact form label {
+    width: 150px;
+    margin: 0;
+  }
+
+  #contact form input[type="email"],
+  #contact form input[type="text"],
+  #contact form input[type="textarea"] {
+    width: 280px;
+  }
+  .thumbnailProduct {
+    max-width: 55px;
+  }
+  .main h1 {
+    font-size: 30px;
+  }
+  .la-shopping-cart {
+    font-size: 25px;
+  }
+  .shoppingcarticon {
+    font-size: 18px;
+  }
+  #itemnumber {
+    width: 25px;
+  }
+  #top {
+    position: sticky;
+    top: 0px;
+    background: #fdfdfc;
+  }
 }

@@ -224,7 +224,10 @@ class ProductsForSale extends React.Component {
               </div>
               <div className="productDesc">
                 <form onSubmit={this.handlerOfSubmit}>
-                  <label>{this.getCurrentStock(item.alias)} in stock</label>
+                  <label>
+                    {this.getCurrentStock(item.alias)} in stock, {item.price}
+                    €/uni
+                  </label>
                   <input
                     type="number"
                     min="0"
@@ -242,7 +245,6 @@ class ProductsForSale extends React.Component {
                     ></i>
                   </button>
                 </form>
-                <p>{item.price}€/uni</p>
               </div>
             </li>
           ))}

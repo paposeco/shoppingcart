@@ -146,14 +146,6 @@ const Shop = (props) => {
         Disclaimer: The skeins of yarn displayed are from non-fictional
         companies, but the photos are mine. They are part of my yarn stash. :D
       </p>
-      <footer>
-        <a href="https:github.com/paposeco/" alt="github">
-          <span>
-            <i className="lab la-github"></i>
-          </span>
-          Fabi
-        </a>
-      </footer>
     </div>
   );
 };

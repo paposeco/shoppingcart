@@ -18,38 +18,51 @@ const Routes = () => {
   };
 
   const deleteItem = function (event) {
-    const target = event.target.dataset.itemalias;
-    const itemsDisplayed = Array.from(itemsInCart);
-    let indexToDelete = 0;
-    const itemToDelete = itemsDisplayed.filter((element, index) => {
-      if (element.itemname === target) {
-        indexToDelete = index;
-      }
-      return element.itemname === target;
-    });
+    if (itemsInCart.length === 2) {
+      setItemsInCart([]);
+      setNumberItemsInCart(0);
+      setTotalPriceInCart(0);
+    } else {
+      const target = event.target.dataset.itemalias;
+      const itemsDisplayed = Array.from(itemsInCart);
+      let indexToDelete = 0;
+      const itemToDelete = itemsDisplayed.filter((element, index) => {
+        if (element.itemname === target) {
+          indexToDelete = index;
+        }
+        return element.itemname === target;
+      });
 
-    const itemquantity = Number(itemToDelete[0].quantity);
-    const itemprice =
-      Number(itemsDisplayed[indexToDelete + 1].price) * itemquantity;
-    itemsDisplayed.splice(indexToDelete, 2);
-
-    setItemsInCart(itemsDisplayed);
-    setTotalPriceInCart(totalPriceInCart - itemprice);
-    setNumberItemsInCart(numberItemsInCart - itemquantity);
+      const itemquantity = Number(itemToDelete[0].quantity);
+      const itemprice =
+        Number(itemsDisplayed[indexToDelete + 1].price) * itemquantity;
+      itemsDisplayed.splice(indexToDelete, 2);
+      setItemsInCart(itemsDisplayed);
+      setTotalPriceInCart(totalPriceInCart - itemprice);
+      setNumberItemsInCart(numberItemsInCart - itemquantity);
+    }
   };
 
   return (
     <BrowserRouter>
       <div id="headertitle">
         <h1>
-          <a href="/">Fictional Yarn Shop</a>
+          <a href="/" title="Homepage">
+            Fictional Yarn Shop
+          </a>
         </h1>
         <div>
           <span id="socialmedia">
-            <a href="https://www.youtube.com/watch?v=Fx0G6DHMfXM">
+            <a
+              href="https://www.youtube.com/watch?v=Fx0G6DHMfXM"
+              title="Instagram"
+            >
               <i className="lab la-instagram"></i>
             </a>
-            <a href="https://www.youtube.com/watch?v=Fx0G6DHMfXM">
+            <a
+              href="https://www.youtube.com/watch?v=Fx0G6DHMfXM"
+              title="Youtube"
+            >
               <i className="lab la-facebook"></i>
             </a>
           </span>
@@ -67,7 +80,7 @@ const Routes = () => {
             <li>
               <Link to="/contact">Contact</Link>
             </li>
-            <li className="shoppingcarticon">
+            <li className="shoppingcarticon" title="Go to Cart">
               <Link to="/shoppingcart">
                 <i className="las la-shopping-cart"></i>
                 <span id="itemnumber">{numberItemsInCart}</span>
@@ -92,6 +105,15 @@ const Routes = () => {
           <DisplayCart itemsincart={itemsInCart} deleteitem={deleteItem} />
         </Route>
       </Switch>
+
+      <footer>
+        <a href="https:github.com/paposeco/" alt="github">
+          <span>
+            <i className="lab la-github"></i>
+          </span>
+          Fabi
+        </a>
+      </footer>
     </BrowserRouter>
   );
 };

@@ -12,7 +12,7 @@ const Homepage = () => {
   return (
     <div className="main">
       <div id="slogan">
-        <img src={sheep} />
+        <img src={sheep} className="logo" alt="sheeplogo" />
         <h2>A cornucopia of yarn</h2>
       </div>
       <div id="supplierssection">
@@ -51,14 +51,6 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-      <footer>
-        <a href="https:github.com/paposeco/" alt="github">
-          <span>
-            <i className="lab la-github"></i>
-          </span>
-          Fabi
-        </a>
-      </footer>
     </div>
   );
 };
