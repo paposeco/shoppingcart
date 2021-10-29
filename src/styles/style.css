@@ -207,8 +207,15 @@ input:focus {
   gap: 4px;
 }
 
-.productDesc button {
+.productDesc button,
+.deletebutton button {
+  text-align: center;
   height: 27px;
+  color: black;
+}
+
+.deletebutton button {
+  padding: 1px 2px;
 }
 
 .price {
@@ -408,9 +415,12 @@ input[type="submit"]:hover {
   padding: 10px 20px;
 }
 
-.la-cart-plus {
+.la-cart-plus,
+.la-trash-alt {
   font-size: 18px;
+  color: black;
   vertical-align: middle;
+  text-align: center;
 }
 
 @media screen and (min-width: 700px) and (max-width: 1200px) {
