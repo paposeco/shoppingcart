@@ -1,5 +1,7 @@
 # Fictional Yarn Shop for The Odin Project
 
+[Live Demo](https://paposeco.github.io/shoppingcart/)
+
 The purpose of this exercise was to develop an online website store, with a shopping cart. The checkout process wasn't developed.
 
 ## Features
