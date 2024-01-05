@@ -4,6 +4,11 @@
 
 The purpose of this exercise was to develop an online website store, with a shopping cart. The checkout process wasn't developed.
 
+![Fictional Yarn Shop Homepage](https://github.com/paposeco/shoppingcart/assets/13892562/0a1c8063-7dc2-4546-93eb-e2ff63a25f9b)
+![Fictional Yarn Shop](https://github.com/paposeco/shoppingcart/assets/13892562/2a4a2b86-2f0e-4eea-b019-c59f62d7cc1b)
+![Fictional Yarn Shop Shopping Cart](https://github.com/paposeco/shoppingcart/assets/13892562/699d9cba-f2d3-420c-bdea-2622ded39f24)
+
+
 ## Features
 
 In my implementation, there's a nav bar with the website's pages: homepage, shop, contact and cart.
